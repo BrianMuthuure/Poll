@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="mb-5 text-center">{{question.text}}</h1>
+<ul class="list-group mb-5">
+    {% for choice in question.choice_set.all %}
+    <li class="list-group-item">
+        {{ choice.name }}
+        <a class="btn btn-sm btn-success float-right">
+            {{ choice.no_votes }} vote{{ choice.no_votes | pluralize }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+<a class="btn btn-secondary" href="{% url 'main:home' %}">Back To Questions</a>
+<a class="btn btn-dark" href="{{ question.get_absolute_url }}">Vote Again</a>
+{% endblock %}
